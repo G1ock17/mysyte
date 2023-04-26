@@ -35,11 +35,12 @@
         }
         button {
             border-radius: 20px;
-            padding: 7px 15px 7px 15px;
+            padding: 10px 25px 10px 25px;
             margin: 0 auto;
             display: block;
             color: var(--tg-theme-text-color);
             background-color: var(--tg-theme-bg-color);
+            font-family: Comfortaa;
         }
         button:hover{
             background-color: var(--tg-theme-secondary-bg-color);
@@ -50,15 +51,51 @@
             width: 130px;
             height: 100px;
         }
+        #form{
+            display: none;
+            padding-top: 50px;
+            text-align: center;
+            background-color: var(--tg-theme-bg-color);
+        }
+        input{
+            border-radius: 20px;
+            padding: 10px 20px 10px 20px;
+            text-align: center;
+            margin: 0 auto;
+            display: block;
+            font-family: Comfortaa;
+            color: var(--tg-theme-text-color);
+        }
+        .item_form{
+            margin: 10px auto 10px auto;
+        }
     </style>
 </head>
 <body>
-    <div class="main">
+    <div id="main">
         <h1>Курс по Соционике</h1>
         <img src="https://cdn-icons-png.flaticon.com/512/746/746748.png?w=740&t=st=1682460547~exp=1682461147~hmac=670cb7e6e1ed8ae5e57a08f2b962eef5f785efa667e004a75b38d7fc884f3bd7">
         <p>Узнайте, какие черты характера присущи вашему типу личности и как использовать их в повседневной жизни.</p>
         <button id="buy">Купить</button>
     </div>
+    <form id="form">
+        <input type="text" placeholder="Имя" id="user_name" class="item_form">
+        <input type="text" placeholder="Email" id="user_email" class="item_form">
+        <input type="text" placeholder="Телефон" id="user_phone" class="item_form">
+        <button id="order" class="item_form">Оформить</button>
+    </form>
+
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <script>
+        let tg = window.Telegram.WebApp;
+        let buy = document.getElementById("buy");
+        let order = document.getElementById("order");
+
+        buy.addEventListener("click",()=>{
+            document.getElementById("main").style.display = "none";
+            document.getElementById("form").style.display = "block";
+            document.getElementById("user_name").value = tg.initDataUnsafe.user.first_name + " " + tg.initDataUnsafe.user.last_name;
+        });
+    </script>
 </body>
 </html>

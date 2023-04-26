@@ -35,7 +35,7 @@
         }
         button {
             border-radius: 20px;
-            padding: 7px 15px 7px 15px;
+            padding: 10px 25px 10px 25px;
             margin: 0 auto;
             display: block;
             color: var(--tg-theme-text-color);
@@ -59,6 +59,24 @@
         <p>Научитесь контролировать свои эмоции и управлять стрессом в любой жизненной ситуации.</p>
         <button id="buy">Купить</button>
     </div>
+    <form id="form">
+        <input type="text" placeholder="Имя" id="user_name" class="item_form">
+        <input type="text" placeholder="Email" id="user_email" class="item_form">
+        <input type="text" placeholder="Телефон" id="user_phone" class="item_form">
+        <button id="order" class="item_form">Оформить</button>
+    </form>
+
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <script>
+        let tg = window.Telegram.WebApp;
+        let buy = document.getElementById("buy");
+        let order = document.getElementById("order");
+
+        buy.addEventListener("click",()=>{
+            document.getElementById("main").style.display = "none";
+            document.getElementById("form").style.display = "block";
+            document.getElementById("user_name").value = tg.initDataUnsafe.user.first_name + " " + tg.initDataUnsafe.user.last_name;
+        });
+    </script>
 </body>
 </html>
